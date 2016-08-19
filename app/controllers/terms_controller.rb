@@ -15,10 +15,12 @@ class TermsController < ApplicationController
   # GET /terms/new
   def new
     @term = Term.new
+    @categories = Category.all
   end
 
   # GET /terms/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /terms

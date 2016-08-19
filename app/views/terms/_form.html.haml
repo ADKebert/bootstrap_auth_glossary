@@ -19,7 +19,8 @@
     = f.label :web_link
     = f.text_field :web_link
   .field
-    = f.label :category_id
-    = f.number_field :category_id
+    - @categories.each do |category|
+      = f.label category.name
+      = f.radio_button(:category_id, "#{category.id}") 
   .actions
     = f.submit 'Save'

@@ -14,7 +14,7 @@
   = @term.web_link
 %p
   %b Category:
-  = @term.category_id
+  = @term.category.name
 
 = link_to 'Edit', edit_term_path(@term)
 \|
