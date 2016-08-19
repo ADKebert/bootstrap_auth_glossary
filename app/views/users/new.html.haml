@@ -1,0 +1,17 @@
+%h1 Signup
+%ul
+  = form_for(@user) do |f|
+    %li
+      Name:
+      = f.text_field :name
+    %li
+      Email:
+      = f.text_field :email
+    %li
+      Password:
+      = f.password_field :password
+    %li
+      Password Confirmation:
+      = f.password_field :password
+    %li
+      = f.submit "Submit"
