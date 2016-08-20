@@ -1,12 +1,18 @@
-%h1 Login
-
-%ul
-  = form_tag login_path do
-    %li
-      Email:
-      = text_field_tag :email
-    %li
-      Password:
-      = password_field_tag :password
-    %li
-      = submit_tag "Submit"
+.col-sm-offset-2.col-sm-8
+  = form_tag login_path, { class: "form-horizontal" } do
+    .form-group
+      %h1.col-sm-2
+        Login
+    .form-group
+      %label.col-sm-2.control-label
+        Email:
+      .col-sm-10
+        = text_field_tag :email
+    .form-group
+      %label.col-sm-2.control-label
+        Password:
+      .col-sm-10
+        = password_field_tag :password
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = submit_tag "Submit", class: "btn btn-primary"

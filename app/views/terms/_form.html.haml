@@ -1,26 +1,27 @@
-= form_for @term do |f|
+= form_for @term, html: { class: "form-control" }  do |f|
   - if @term.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@term.errors.count, "error")} prohibited this term from being saved:"
+      %h2 = "#{pluralize(@term.errors.count, "error")} prohibited this term from being saved:"
       %ul
         - @term.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .form-group
     = f.label :name
     = f.text_field :name
-  .field
+  .form-group
     = f.label :definition
     = f.text_field :definition
-  .field
+  .form-group
     = f.label :author
     = f.text_field :author
-  .field
+  .form-group
     = f.label :web_link
     = f.text_field :web_link
-  .field
+  .form-group
     - @categories.each do |category|
-      = f.label category.name
-      = f.radio_button(:category_id, "#{category.id}") 
-  .actions
-    = f.submit 'Save'
+      .radio_button
+        = f.label category.name
+        = f.radio_button(:category_id, "#{category.id}")
+  .actions.form-group
+    = f.submit 'Save', class: "btn btn-primary"
