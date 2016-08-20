@@ -5,7 +5,11 @@ class TermsController < ApplicationController
   # GET /terms
   # GET /terms.json
   def index
-    @terms = Term.all
+    if params[:search]
+      @terms = Term.search(params[:search]).order(:name)
+    else
+      @terms = Term.all.order(:name)
+    end
   end
 
   # GET /terms/1

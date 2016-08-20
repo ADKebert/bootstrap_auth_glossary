@@ -26,9 +26,11 @@
               %li
                 = link_to 'Categories', categories_path
 
-            %form.navbar-form.navbar-right
+            %form.navbar-form.navbar-right{ action: "/terms" }
               .form-group
-                %input.form-control{:placeholder => "Search", :type => "text"}/
+                -# %input.form-control{:placeholder => "Search Terms", :type => "text", :name => "search" }/
+                = text_field_tag :search, params[:search]
+
               %button.btn.btn-default{:type => "submit"} Submit
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
