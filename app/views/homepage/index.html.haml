@@ -1,11 +1,14 @@
-%h1
-  Welcome
-  -if logged_in?
-    = current_user.name
-%ul
-  - @terms.each do |term|
-    %li
-      = link_to "#{term.name}", term_path(term.id)
-
-= link_to "Terms", terms_path
-= link_to "Categories", categories_path
+.container-fluid
+  .row.homepage-gallery
+    .col-sm-5
+      %h1.text-right
+        Welcome
+        -if logged_in?
+          = current_user.name
+    .col-sm-7.recent-terms
+      %h3 Recently Added
+      %ul.list-unstyled
+        - @terms.each do |term|
+          %li
+            = link_to "#{term.name}", term_path(term.id), class: "btn btn-default"
+            = term.definition

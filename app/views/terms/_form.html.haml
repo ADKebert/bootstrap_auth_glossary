@@ -1,4 +1,4 @@
-= form_for @term, html: { class: "form-control" }  do |f|
+= form_for @term, html: { class: "form-horizontal" }  do |f|
   - if @term.errors.any?
     #error_explanation
       %h2 = "#{pluralize(@term.errors.count, "error")} prohibited this term from being saved:"
@@ -6,22 +6,24 @@
         - @term.errors.full_messages.each do |msg|
           %li= msg
 
+  = f.hidden_field :author, value: current_user.name
   .form-group
-    = f.label :name
-    = f.text_field :name
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :name
   .form-group
-    = f.label :definition
-    = f.text_field :definition
+    = f.label :definition, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :definition
   .form-group
-    = f.label :author
-    = f.text_field :author
+    = f.label :web_link, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :web_link
   .form-group
-    = f.label :web_link
-    = f.text_field :web_link
-  .form-group
-    - @categories.each do |category|
-      .radio_button
-        = f.label category.name
+    .col-sm-10.col-sm-offset-2
+      - @categories.each do |category|
+        = f.label category.name, class: "control-label"
         = f.radio_button(:category_id, "#{category.id}")
   .actions.form-group
-    = f.submit 'Save', class: "btn btn-primary"
+    .col-sm-offset-2
+      = f.submit 'Save', class: "btn btn-primary"
