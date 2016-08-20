@@ -12,6 +12,11 @@ class TermsController < ApplicationController
     end
   end
 
+  # Want to have GET /terms/error
+  def error
+    render :permission_error
+  end
+
   # GET /terms/1
   # GET /terms/1.json
   def show
@@ -25,6 +30,10 @@ class TermsController < ApplicationController
 
   # GET /terms/1/edit
   def edit
+    unless Term.find(params[:id]).user_authored_term?(current_user.name)
+      redirect_to error_terms_path
+    end
+
     @categories = Category.all
   end
 
@@ -47,6 +56,10 @@ class TermsController < ApplicationController
   # PATCH/PUT /terms/1
   # PATCH/PUT /terms/1.json
   def update
+    unless Term.find(params[:id]).user_authored_term?(current_user.name)
+      redirect_to error_terms_path
+    end
+
     respond_to do |format|
       if @term.update(term_params)
         format.html { redirect_to @term, notice: 'Term was successfully updated.' }
@@ -61,6 +74,10 @@ class TermsController < ApplicationController
   # DELETE /terms/1
   # DELETE /terms/1.json
   def destroy
+    unless Term.find(params[:id]).user_authored_term?(current_user.name)
+      redirect_to error_terms_path
+    end
+
     @term.destroy
     respond_to do |format|
       format.html { redirect_to terms_url, notice: 'Term was successfully destroyed.' }

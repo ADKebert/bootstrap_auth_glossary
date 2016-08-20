@@ -16,6 +16,7 @@
   %b Category:
   = @term.category.name
 
-= link_to 'Edit', edit_term_path(@term)
-\|
+- if current_user.name == @term.author
+  = link_to 'Edit', edit_term_path(@term)
+  \|
 = link_to 'Back', terms_path

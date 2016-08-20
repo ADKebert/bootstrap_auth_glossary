@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   root 'homepage#index'
 
   resources :categories
-  resources :terms
+  resources :terms do
+    collection do
+      get 'error'
+    end
+  end
 
   # User
   get '/signup' => 'users#new'
